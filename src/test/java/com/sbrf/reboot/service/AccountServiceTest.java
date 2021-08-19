@@ -19,8 +19,6 @@ class AccountServiceTest {
     @Mock
     AccountRepository accountRepository;
 
-    @Mock
-    Account testAccount;
 
     AccountService accountService;
 
@@ -29,14 +27,8 @@ class AccountServiceTest {
         accountRepository = Mockito.mock(AccountRepository.class);
 
         accountService = new AccountService(accountRepository);
-
-        testAccount = Mockito.mock(Account.class);
     }
 
-    @AfterEach
-    void clearAccounts(){
-        accountService.clearRepository();
-    }
 
     @Test
     void bookExist() {
@@ -57,21 +49,5 @@ class AccountServiceTest {
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
 
         assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
-    }
-
-    @Test
-    void accountsNotEmpty(){
-        Set<Account> accounts = new HashSet();
-        Account account = new Account("ACC1234NUM");
-        accounts.add(account);
-        assertFalse(AccountRepository.accounts.equals(new HashSet<>()) && account.getAccountStatus() == ACTIVE);
-    }
-
-    @Test
-    void getAccountStatus(){
-
-        when(testAccount.getStatus()).thenReturn(LOCKED);
-
-        assertTrue(testAccount.getStatus() == LOCKED);
     }
 }

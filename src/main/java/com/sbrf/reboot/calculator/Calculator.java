@@ -16,13 +16,7 @@ public class Calculator {
     }
 
     public static double getDivision(int numOne, int numTwo) {
-        double result = MAX_VALUE;
-        try {
-            result = numOne / numTwo;
-        }catch (ArithmeticException err){
-            System.out.println("Error: " + err.getMessage() + ", return max value of double");
-        }
-        return result;
+        return numOne/numTwo;
     }
 
     public static double getPower(int numOne, int numTwo) {
