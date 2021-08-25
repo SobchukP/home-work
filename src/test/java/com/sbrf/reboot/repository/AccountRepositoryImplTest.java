@@ -1,5 +1,8 @@
 package com.sbrf.reboot.repository;
 
+import com.sbrf.reboot.service.Account;
+import com.sbrf.reboot.service.AccountRepository;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +22,11 @@ class AccountRepositoryImplTest {
     @Test
     void onlyPersonalAccounts() throws IOException {
         accountRepository = new AccountRepositoryImpl("src/main/resources/Accounts.txt");
-        Set<String> allAccountsByClientId = accountRepository.getAllAccountsByClientId(1);
-        ArrayList<String> strings = new ArrayList<String>() {{
-            add("2-ACCNUM");
-            add("1-ACCNUM");
-            add("4-ACC1NUM");
+        Set<Account> allAccountsByClientId = accountRepository.getAllAccountsByClientId(1);
+        ArrayList<Account> strings = new ArrayList<Account>() {{
+            add(new Account("2-ACCNUM"));
+            add(new Account("1-ACCNUM"));
+            add(new Account("4-ACC1NUM"));
         }};
 
         assertTrue(strings.containsAll(allAccountsByClientId));
@@ -32,9 +35,10 @@ class AccountRepositoryImplTest {
     @Test
     void successGetAllAccountsByClientId() throws IOException {
         accountRepository = new AccountRepositoryImpl("src/main/resources/Accounts.txt");
-        Set<String> allAccountsByClientId = accountRepository.getAllAccountsByClientId(1);
-        Assertions.assertTrue(allAccountsByClientId.contains("5-ACC1NUM"));
+        Set<Account> allAccountsByClientId = accountRepository.getAllAccountsByClientId(2);
+        Assertions.assertTrue(allAccountsByClientId.contains(new Account("5-ACC1NUM")));
     }
+
 
     @Test
     void failGetAllAccountsByClientId() {
