@@ -1,6 +1,6 @@
 package com.sbrf.reboot.repository;
 
-import com.sbrf.reboot.service.Account;
+import com.sbrf.reboot.dto.Account;
 import com.sbrf.reboot.service.AccountRepository;
 import lombok.SneakyThrows;
 
