@@ -19,7 +19,7 @@ public class MainHttpServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
-        counter.set(counter.get()+1);
+        counter.getAndIncrement();
         session.setAttribute("visitCounter", counter);
         String name = null == req.getParameter("name") ? "Anonymous" : req.getParameter("name");
         resp.setContentType("text/html");
